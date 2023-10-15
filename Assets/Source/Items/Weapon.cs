@@ -5,23 +5,33 @@ using System;
 using Mirror;
 
 //typical use case of scriptable object, this can't really be serialized.
+[CreateAssetMenu(menuName = "Items/Weapon Data")]
 public class Weapon : ScriptableObject
 {
-    [SerializeField]
+    [Space, TextArea(3, 10), SerializeField]
+    string description = "Item Description";
+
+    [Range(0, 1000), SerializeField]
     int value = 300;
 
-    [Space, SerializeField]
+    [Range(0, 100), Space, SerializeField]
     int damage = 20;
 
     [Space, SerializeField]
     GameObject model = null;
 
+    [Space, SerializeField]
+    Sprite icon = null;
+
     public string Name => name;
+    public string Description => description;
 
     public int Value => value;
     public int Damage => damage;
 
     public GameObject Model => model;
+
+    public Sprite Icon => icon;
 }
 //static container class for all weapons in our game, loaded once at game startup
 public static class Weapons
